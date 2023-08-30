@@ -39,7 +39,7 @@ let persons = [
   },
 ];
 
-// app.use(morgan('tiny'))
+app.use(morgan('tiny'))
 app.use(morgan(':method :url :status :res[content-length] - :response-time ms :content'))
 
 app.get("/", (request, response) => {
@@ -100,7 +100,7 @@ app.post("/api/persons", (request, response) => {
   }else{
     const id = getRandomInt(100000)
     person.id = id
-    // persons = persons.concat(person)
+    persons = persons.concat(person)
     response.json(person)
   }
 })
