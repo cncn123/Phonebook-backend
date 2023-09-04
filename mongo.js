@@ -11,11 +11,7 @@ const password = process.argv[2];
 const name = process.argv[3];
 const number = process.argv[4];
 
-const url = `mongodb+srv://Bobby:${password}@cluster1.me6ro8z.mongodb.net/PersonApp?retryWrites=true&w=majority`;
 
-mongoose.set("strictQuery", false);
-console.log("url", url);
-mongoose.connect(url).catch((error) => console.log("error", error));
 
 const personSchema = new mongoose.Schema({
   id: Number,
@@ -36,9 +32,9 @@ if (name && number) {
     console.log(`added ${name} number ${number} to phonebook`);
     mongoose.connection.close();
   });
-}else if(!name && !number){
+} else if (!name && !number) {
   Person.find({}).then(result => {
-    console.log("Phonebook:")
+    console.log("phonebook:")
     result.forEach(person => {
       console.log(person.name, person.number)
     })
